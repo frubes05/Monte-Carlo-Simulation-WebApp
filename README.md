@@ -1,5 +1,5 @@
-## Monte-Carlo-Simulation-WebApp
+# Monte-Carlo-Simulation-WebApp
 
-# For college purposes
+## For college purposes
 
 https://monte-carlo-simulation.netlify.app/
