@@ -60,6 +60,7 @@ class MonteCarloSimulation {
 
   showSpinners() {
     this.body.style.overflow = "hidden";
+    this.tables.classList.contains("fadein__first") ? this.tables.classList.remove("fadein__first") : "";
     this.tables.classList.contains("fadein") ? this.tables.classList.remove("fadein") : "";
     this.spinners.classList.add("spinners__active");
     this.tables.classList.add("fadeout");
