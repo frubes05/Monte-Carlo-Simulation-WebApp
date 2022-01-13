@@ -53,6 +53,11 @@ class MonteCarloSimulation {
     }, 1000);
   }
 
+  fadeEffect () {
+    sessionStorage.getItem("session") ? this.tables.classList.remove("fadein__first") :  this.tables.classList.add("fadein__first");
+    sessionStorage.setItem("session", true);
+  }
+
   showSpinners() {
     this.body.style.overflow = "hidden";
     this.tables.classList.contains("fadein") ? this.tables.classList.remove("fadein") : "";
@@ -90,7 +95,6 @@ class MonteCarloSimulation {
     this.createInitialTable();
     this.createConclusionTable();
     this.minutesPerAppointment = [];
-    console.log(this.patients);
   }
 
   createInitialTable() {
@@ -176,14 +180,12 @@ class MonteCarloSimulation {
     const remainder = sum_arr.map((elem) => 30 - elem);
     remainder.unshift(0);
     this.emptyWalkArr = remainder;
-    console.log(this.emptyWalkArr);
     this.meanEmptyWalk = this.sumArray(remainder) / this.randomNumbers.length;
   }
 
   getWaitingLine(sum_arr) {
     const over30 = sum_arr.map((elem) => (elem <= 30 ? 0 : elem - 30));
     this.over30Arr = over30;
-    console.log(this.over30Arr);
     this.meanOver30 = this.sumArray(over30) / this.randomNumbers.length;
   }
 
@@ -206,6 +208,7 @@ class MonteCarloSimulation {
 
   #bindEvents() {
     document.querySelector(".new__predictions").addEventListener("click", this.throttle(this.randomize.bind(this, true), 1500));
+    window.addEventListener("load", this.fadeEffect.bind(this));
   }
 }
 

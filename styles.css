@@ -37,6 +37,10 @@ h1 {
     animation: fadeIn 0.5s linear forwards;
 }
 
+.fadein__first {
+    animation: fadeIn 1.5s linear forwards;
+}
+
 .tbody {
     background: white;
 }
