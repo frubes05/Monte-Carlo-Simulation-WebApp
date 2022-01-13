@@ -1,0 +1,94 @@
+body {
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-image: url("./assets/dotted.webp");
+}
+
+.blur {
+    backdrop-filter: blur(5px);
+}
+
+.btn {
+    width: 100%;
+}
+
+
+.table {
+    height: 100%;
+    text-align: center;
+}
+
+.tables {
+    height: auto;
+    display: flex;
+    gap: 50px;
+}
+
+.fadeout {
+    animation: fadeOut 0.5s linear forwards;
+}
+
+.fadein {
+    animation: fadeIn 0.5s linear forwards;
+}
+
+.tbody {
+    background: white;
+}
+
+.tfoot {
+    background: black;
+    color: white;
+    font-weight: bold;
+}
+
+.wrapper {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinners {
+    display: none;
+}
+
+.spinners__active {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+@media only screen and (max-width: 800px) {
+    .tables {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
