@@ -5,6 +5,10 @@ body {
     background-image: url("./assets/dotted.webp");
 }
 
+h1 {
+    text-align: center;
+}
+
 .blur {
     backdrop-filter: blur(5px);
 }
