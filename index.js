@@ -192,20 +192,20 @@ class MonteCarloSimulation {
     return sum;
   }
 
-  debounce(fn,delay){
-    let timeout;
+  throttle=(fn,delay)=>{
+    let last=0;
     return function(...args){
-      if(timeout){
-        clearTimeout(timeout);
+      const now=new Date().getTime();
+      if(now-last<delay){
+        return
       }
-      timeout=setTimeout(()=>{
-         fn(...args)
-      },delay)
+      last=now;
+      return fn(...args);
     }
   }
 
   #bindEvents() {
-    document.querySelector(".new__predictions").addEventListener("click", this.debounce(this.randomize.bind(this, true), 500));
+    document.querySelector(".new__predictions").addEventListener("click", this.throttle(this.randomize.bind(this, true), 1500));
   }
 }
 
