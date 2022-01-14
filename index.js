@@ -43,6 +43,8 @@ class MonteCarloSimulation {
 
   randomize(clicked) {
     this.showSpinners();
+    document.querySelector(".new__predictions").disabled = true;
+    document.querySelector(".new__predictions").classList.add("btn-secondary");
     setTimeout(()=> {
         for (let i = 0; i < 8; i++) {
             this.array.push(Math.floor(Math.random() * 100));
@@ -51,6 +53,10 @@ class MonteCarloSimulation {
           this.getWholeMinutes(this.array, clicked);
           this.array.length = 0;
     }, 1000);
+    setTimeout(() => {
+      document.querySelector(".new__predictions").disabled = false;
+      document.querySelector(".new__predictions").classList.remove("btn-secondary");
+    }, 2500)
   }
 
   fadeEffect () {

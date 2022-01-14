@@ -3,6 +3,9 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     background-image: url("./assets/dotted.webp");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h1 {
@@ -19,7 +22,7 @@ h1 {
 
 
 .table {
-    height: 100%;
+    height: fit-content;
     text-align: center;
 }
 
@@ -103,6 +106,10 @@ h1 {
 }
 
 @media only screen and (max-width: 800px) {
+    body {
+        display: block;
+    }
+
     .tables {
         display: flex;
         flex-direction: column;
