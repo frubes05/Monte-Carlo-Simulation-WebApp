@@ -4,6 +4,7 @@ class MonteCarloSimulation {
     this.body = document.querySelector("body");
     this.tables = document.querySelector(".tables");
     this.spinners = document.querySelector(".spinners");
+    this.predictedTimes = [30, 60, 90, 120, 150, 180, 210, 240];
     this.array = [];
     this.patients = [
       {
@@ -79,6 +80,8 @@ class MonteCarloSimulation {
   }
 
   getWholeMinutes(random_numbers, state) {
+    this.emptyWalkArr.length = 0;
+    this.over30Arr.length = 0;
     if (state) {
         document.querySelectorAll(".table").forEach(table => {
             table.remove();
@@ -86,19 +89,19 @@ class MonteCarloSimulation {
     };
     random_numbers.forEach((num) => {
       if (num <= 39) {
-        this.minutesPerAppointment.push(0.4 * 45);
+        this.minutesPerAppointment.push(45);
       } else if (num > 39 && num <= 54) {
-        this.minutesPerAppointment.push(0.15 * 60);
+        this.minutesPerAppointment.push(60);
       } else if (num > 54 && num <= 69) {
-        this.minutesPerAppointment.push(0.15 * 15);
+        this.minutesPerAppointment.push(15);
       } else if (num > 69 && num <= 79) {
-        this.minutesPerAppointment.push(0.1 * 45);
+        this.minutesPerAppointment.push(45);
       } else if (num > 79) {
-        this.minutesPerAppointment.push(0.2 * 15);
+        this.minutesPerAppointment.push(15);
       }
     });
     this.getWaitingLine(this.minutesPerAppointment);
-    this.getEmptyWalk(this.minutesPerAppointment);
+    this.getEmptyWalk();
     this.createInitialTable();
     this.createConclusionTable();
     this.minutesPerAppointment = [];
@@ -176,7 +179,7 @@ class MonteCarloSimulation {
         <p class="text">
           <span>t</span>
           <sub>praz</sub>
-          <span> = ${this.meanEmptyWalk.toFixed(2)}</span>
+          <span> = ${this.meanEmptyWalk} </span>
         </p>
         </div>
       </td>
@@ -198,18 +201,33 @@ class MonteCarloSimulation {
     return unified;
   }
 
-  getEmptyWalk(sum_arr) {
-    sum_arr.splice(-1, 1);
-    const remainder = sum_arr.map((elem) => 30 - elem);
-    remainder.unshift(0);
-    this.emptyWalkArr = remainder;
-    this.meanEmptyWalk = this.sumArray(remainder) / this.randomNumbers.length;
+  getEmptyWalk() {
+    this.meanEmptyWalk = this.sumArray(this.emptyWalkArr) / this.randomNumbers.length;
   }
 
   getWaitingLine(sum_arr) {
-    const over30 = sum_arr.map((elem) => (elem <= 30 ? 0 : elem - 30));
-    this.over30Arr = over30;
-    this.meanOver30 = this.sumArray(over30) / this.randomNumbers.length;
+    const realTimes = [];
+    for(let i = 0; i<sum_arr.length; i++) {
+      i > 0 ? realTimes.push(realTimes[i-1] + sum_arr[i]) : realTimes.push(sum_arr[0]);
+    }
+    let over30 = realTimes.map((elem, i) => elem - this.predictedTimes[i]);
+    over30.splice(-1, 1);
+    over30.unshift(0);
+    this.over30Arr = this.formulateArrays(over30);
+    this.meanOver30 = this.sumArray(this.over30Arr) / this.randomNumbers.length;
+  }
+
+  formulateArrays(formulate_arr) {
+    formulate_arr = formulate_arr.map((elem) => {
+      if(elem >= 0) {
+        this.emptyWalkArr.push(0);
+        return elem;
+      } else {
+        this.emptyWalkArr.push(Math.abs(elem));
+        return 0;
+      }
+    })
+    return formulate_arr;
   }
 
   sumArray(sum_arr) {
