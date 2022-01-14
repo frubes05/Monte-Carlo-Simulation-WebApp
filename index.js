@@ -156,8 +156,24 @@ class MonteCarloSimulation {
     tfoot.innerHTML = `
     <tr>
       <td></td>
-      <td>&Sigma; ${this.meanOver30}</td>
-      <td>&Sigma; ${this.meanEmptyWalk.toFixed(2)}</td>
+      <td class="results">
+        <div class="results__div">
+        <p class="text">
+          <span>t</span>
+          <sub>čekanja</sub>
+          <span> = ${this.meanOver30} </span>
+        </p>
+        </div>
+      </td>
+      <td class="results">
+        <div class="results__div">
+        <p class="text">
+          <span>t</span>
+          <sub>praznog hoda</sub>
+          <span> = ${this.meanEmptyWalk.toFixed(2)}</span>
+        </p>
+        </div>
+      </td>
     </tr>`;
     tfoot.classList.add("tfoot");
     table.appendChild(tfoot);
