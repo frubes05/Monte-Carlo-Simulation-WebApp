@@ -160,7 +160,7 @@ class MonteCarloSimulation {
         <div class="results__div">
         <p class="text">
           <span>t</span>
-          <sub>čekanja</sub>
+          <sub>ček</sub>
           <span> = ${this.meanOver30} </span>
         </p>
         </div>
@@ -169,7 +169,7 @@ class MonteCarloSimulation {
         <div class="results__div">
         <p class="text">
           <span>t</span>
-          <sub>praznog hoda</sub>
+          <sub>praz_hod</sub>
           <span> = ${this.meanEmptyWalk.toFixed(2)}</span>
         </p>
         </div>

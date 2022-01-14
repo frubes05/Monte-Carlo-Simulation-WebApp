@@ -108,6 +108,10 @@ h1 {
         justify-content: center;
         gap: 50px;
     }
+
+    .text {
+        font-size: 14px;
+    }
 }
 
 @keyframes fadeOut {
