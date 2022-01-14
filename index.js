@@ -169,7 +169,7 @@ class MonteCarloSimulation {
         <div class="results__div">
         <p class="text">
           <span>t</span>
-          <sub>praz_hod</sub>
+          <sub>praz</sub>
           <span> = ${this.meanEmptyWalk.toFixed(2)}</span>
         </p>
         </div>
